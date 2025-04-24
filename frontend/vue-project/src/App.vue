@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import RequestUser from './components/RequestUser.vue'
+import RequestProducts from './components/RequestProducts.vue'
 </script>
 
 <template>
@@ -14,6 +16,8 @@ import TheWelcome from './components/TheWelcome.vue'
 
   <main>
     <TheWelcome />
+    <RequestUser />
+    <RequestProducts />
   </main>
 </template>
 
