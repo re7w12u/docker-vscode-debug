@@ -1,9 +1,9 @@
 from os import getenv
 
-def initialize_flask_server_debugger_if_needed():
+def initialize_debugger_if_needed():
     print("initialize_flask_server_debugger_if_needed() called")
     print("DEBUGGER:", getenv("DEBUGGER"))
-    if getenv("DEBUGGER").lower() == "true":
+    if getenv("DEBUGGER") == "true":
         import multiprocessing
         print(f'multiprocessing = {multiprocessing.current_process().pid}')
         if multiprocessing.current_process().pid >= 1:

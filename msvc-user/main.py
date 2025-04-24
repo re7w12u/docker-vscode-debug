@@ -1,7 +1,8 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from debugger import initialize_flask_server_debugger_if_needed
+#from debugger import initialize_flask_server_debugger_if_needed
+from debugger import initialize_debugger_if_needed
 
 app = FastAPI()
 
@@ -13,7 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 print("running msvc-user service")
-initialize_flask_server_debugger_if_needed()
+initialize_debugger_if_needed()
 
 @app.get("/")
 async def root():
