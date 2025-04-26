@@ -1,0 +1,3 @@
+fastapi[standard]
+debugpy
+git+https://github.com/re7w12u/pdebugger.git

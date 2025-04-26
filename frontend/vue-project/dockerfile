@@ -1,0 +1,17 @@
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm install
+
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the port used by the Vue development server (default is 8080)
+EXPOSE 8080
+
+# Start the Vue application
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "8080"]
