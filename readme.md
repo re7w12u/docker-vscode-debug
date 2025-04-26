@@ -70,3 +70,54 @@ async def root():
 	- Go to vscode and press F5 (or run the matching configuration using the menu)
 	 
 # Debug using docker compose
+it's basically the same principals as described above.
+The difference is that it's all wrapped in a docker compose files which can be steered from makefile commands.
+- docker files 
+	- `docker-compose.yaml` run the containers in standard (no debug) mode
+ 	- `docker-compose-debug.yaml` run the containers in debug mode
+
+That being said and unless specific needs, you should only deal with the makefile commands.
+- install make (if not present)
+- I think instructions and comments are pretty self explantory 
+
+
+```r
+dc:=docker-compose.yaml
+dc-debug:=docker-compose-debug.yaml
+
+# build docker containers for the project.
+build:
+	docker compose -f $(dc) build
+
+# build docker containers for the project with no cache
+build-no-cache:
+	docker compose -f $(dc) build --no-cache
+
+# runs containers
+up:
+	docker compose -f $(dc) up -d
+
+#stops containers
+down:
+	docker compose -f $(dc) down
+
+# run all containers in debug mode
+debug-up:
+	docker compose -f $(dc-debug) up
+
+# stop msvc-user service and run only msvc-user in debug mode
+debug-user-up: user-down
+	docker compose -f $(dc-debug) up -d msvc-user
+
+# stop msvc-product service and run only msvc-product in debug mode
+debug-product-up: product-down
+	docker compose -f $(dc-debug) up -d msvc-product
+
+# stop msvc-product service
+product-down:
+	docker compose -f $(dc-debug) down msvc-product
+
+# stop msvc-user service
+user-down:
+	docker compose -f $(dc-debug) down msvc-user
+```
