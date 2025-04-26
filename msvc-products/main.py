@@ -1,3 +1,4 @@
+import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pdebugger.pdebugger import initialize_debugger_if_needed
@@ -16,4 +17,5 @@ initialize_debugger_if_needed()
 print("starting debugger 2")
 @app.get("/")
 async def root():
-    return {"message": "Hello World from product service!"}
+    current_time = datetime.datetime.now().isoformat()
+    return {"message": f"Hello World from product service! Current Time: {current_time}"}    

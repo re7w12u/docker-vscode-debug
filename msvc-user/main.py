@@ -1,8 +1,9 @@
+import datetime
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 #from debugger import initialize_flask_server_debugger_if_needed
-from debugger import initialize_debugger_if_needed
+from pdebugger.pdebugger import initialize_debugger_if_needed
 
 app = FastAPI()
 
@@ -18,4 +19,5 @@ initialize_debugger_if_needed()
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World from user service!"}
+    current_time = datetime.datetime.now().isoformat()
+    return {"message": f"Hello World from user service! Current Time: {current_time}"}
