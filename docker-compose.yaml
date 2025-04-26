@@ -1,0 +1,25 @@
+services:
+  msvc-products:
+    build:
+      context: ./msvc-products
+      dockerfile: dockerfile
+    ports:
+      - "8001:8001"
+      - "5979:5979" # Debugging port
+    
+  
+  msvc-user:
+    build:
+      context: ./msvc-user
+      dockerfile: dockerfile
+    ports:
+      - "8002:8002"
+      - "5978:5978" # Debugging port
+    
+
+  vue-project:
+    build:
+      context: ./frontend/vue-project
+      dockerfile: dockerfile
+    ports:
+      - "8080:8080"
